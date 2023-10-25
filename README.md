@@ -17,7 +17,7 @@ sudo apt install portaudio19-dev
 Finally you can test the speech recognition:
 
 ```
-python live_asr.py
+python live_vad_asr.py
 ```
 
 ### Possible Issues:
