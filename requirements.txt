@@ -1,0 +1,14 @@
+soundfile
+torch
+torchaudio
+transformers
+pyaudio
+webrtcvad
+rx
+halo
+onnx
+onnxruntime
+wheel
+pyctcdecode
+https://github.com/kpu/kenlm/archive/master.zip
+googletrans==3.1.0a0
