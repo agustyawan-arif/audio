@@ -15,10 +15,16 @@ sudo apt install portaudio19-dev
 ```
 
 Finally you can test the speech recognition:
-
+for basic speech recpgnition.
+```
+python wav2vec2_inference.py
+```
+or below comment for near real time speech recpgnition (applied voice activity detection to recognize voice, noice or silent)
 ```
 python live_vad_asr.py
 ```
+optional arguments:
+-dest or --destination_laguage to specify translation destination language, default will be translate into english, you can specify into mandarin with value "zh-cn"
 
 ### Possible Issues:
 
