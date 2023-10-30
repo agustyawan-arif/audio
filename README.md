@@ -24,7 +24,7 @@ or below comment for near real time speech recpgnition (applied voice activity d
 python live_vad_asr.py
 ```
 optional arguments:
--dest or --destination_laguage to specify translation destination language, default will be translate into english, you can specify into mandarin with value "zh-cn"
+`-dest` or `--destination_laguage` to specify translation destination language, default will be translate into english, you can specify into mandarin with value "zh-cn"
 
 ### Possible Issues:
 
