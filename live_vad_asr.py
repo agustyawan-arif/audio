@@ -140,7 +140,7 @@ def main(ARGS):
     wave_buffer = BehaviorSubject(np.array([]))
     wave2vec_asr = Wave2Vec2Inference(model_name)
     wave_buffer.subscribe(
-        on_next=lambda x: asr_output_formatter(wave2vec_asr, x))
+        on_next=lambda x: asr_output_formatter(wave2vec_asr, x, ARGS.language_destination))
 
     # Start audio with VAD
     vad_audio = VADAudio(aggressiveness=ARGS.webRTC_aggressiveness,
@@ -190,7 +190,7 @@ def main(ARGS):
         exit()
 
 
-def asr_output_formatter(asr, audio):
+def asr_output_formatter(asr, audio, dest):
     start = time.perf_counter()
     text = asr.buffer_to_text(audio)
     try:
@@ -200,11 +200,13 @@ def asr_output_formatter(asr, audio):
     inference_time = time.perf_counter()-start
     sample_length = len(audio) / DEFAULT_SAMPLE_RATE
     try:
-        translation = translator.translate(text, src="id", dest="zh-cn")
+        translation = translator.translate(text, src="id", dest=dest)
         tt = translation.text
     except:
         tt = ""
-    print(text)
+    print(text, tt)
+    if not os.path.exists("result"):
+        os.makedirs("result")
     letters = string.ascii_lowercase
     rs = ''.join(random.choice(letters) for i in range(10))
     text_file = open(f"result/{rs}.txt", "w")
@@ -231,6 +233,9 @@ if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(
         description="Stream from microphone to webRTC and silero VAD")
+    
+    parser.add_argument('-dest', '--language_destination', type=str, default="en",
+                        help="language destination for translation")
 
     parser.add_argument('-v', '--webRTC_aggressiveness', type=int, default=3,
                         help="Set aggressiveness of webRTC: an integer between 0 and 3, 0 being the least aggressive about filtering out non-speech, 3 the most aggressive. Default: 3")
