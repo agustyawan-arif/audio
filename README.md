@@ -25,6 +25,7 @@ python live_vad_asr.py
 ```
 optional arguments:
 `-dest` or `--destination_laguage` to specify translation destination language, default will be translate into english, you can specify into mandarin with value "zh-cn"
+
 If you've already run the "live_vad_asr.py" file, you can then run the "server.py" file to send the translation results to the client, which will be received by running "client.py".
 ```bash
 python server.py
